@@ -138,7 +138,194 @@ Simulation of functionality was done using the Cadence Xcelium simulator. Differ
 ![RTL Simulation Results](images/rtl_simulation.png)
 
 ---
-
 ## (iii) RTL Verification
 
-Verification in SimVision was performed to ensure that the
+Verification in SimVision was performed to ensure that the generated product was consistent with the correct multiplication results for each test case.
+
+![RTL Verification](images/rtl_verification.png)
+
+---
+
+## (iv) Logic Synthesis
+
+The synthesis of the hybrid Booth Wallace multiplier was performed using the Cadence Genus tool. The RTL code was mapped to the gate-level netlist using the target standard-cell library.
+
+![Logic Synthesis](images/logic_synthesis.png)
+
+---
+
+## (v) Import into Innovus
+
+The synthesized gate-level netlist was imported into Cadence Innovus for physical implementation. The required technology files and constraints were loaded to prepare the design for layout generation.
+
+---
+
+## (vi) Floorplanning
+
+The core area and aspect ratio were defined, and input/output pins were placed around the core boundary. VDD/VSS power rings and stripes were created for reliable power distribution.
+
+![Floorplanning](images/floorplan.png)
+
+---
+
+## (vii) Placement
+
+Standard cells were automatically arranged within the core area and optimized to reduce wire length, improve timing, and minimize congestion.
+
+![Placement](images/placement.png)
+
+---
+
+## (viii) Routing
+
+Global routing and detailed routing were performed to connect all signal nets using the available metal layers.
+
+![Routing](images/routing.png)
+
+---
+
+## (ix) Physical Verification
+
+After routing, the design was subjected to Design Rule Check (DRC), Layout Versus Schematic (LVS), connectivity verification, and parasitic extraction.
+
+---
+
+## (x) Performance Evaluation
+
+The final design was evaluated using functional simulation waveforms, synthesis reports, physical layout results, and the observed behavior of the fault detection and correction mechanism.
+
+---
+
+# EXPERIMENTAL SETUP
+
+## a. RTL Simulation Setup
+
+**Tools Used**
+
+- Cadence Xcelium – Verilog compilation and simulation
+- Cadence SimVision – Waveform viewing and debugging
+
+**Input Files**
+
+- booth_encoder_16.v
+- partial_product_gen.v
+- wallace_tree_16.v
+- final_adder.v
+- majority_voter.v
+- hybrid_booth_wallace_16.v
+- hybrid_booth_wallace_16_ft.v
+- tb_hybrid_multiplier.v
+
+---
+
+## b. Logic Synthesis Setup
+
+**Tool Used**
+
+- Cadence Genus Synthesis Solution
+
+**Input Files**
+
+- Verilog RTL files
+- Technology library (.lib)
+- Synthesis constraints file (constraints.sdc)
+- Genus TCL script (run_genus.tcl)
+
+---
+
+## c. Physical Design Setup
+
+**Tool Used**
+
+- Cadence Innovus Implementation System
+
+**Input Files**
+
+- Synthesized gate-level netlist
+- Timing constraints file (.sdc)
+- Technology LEF file
+- Standard cell LEF file
+- Liberty timing library
+- MMMC file
+- Innovus run script
+
+---
+
+# RESULTS
+
+## 1. RTL Simulation Results
+
+Functional simulation was performed using Cadence Xcelium with the testbench `tb_hybrid_multiplier.v`.
+
+Various combinations of positive and negative 16-bit signed inputs were applied to verify multiplication functionality. Faults were intentionally injected to validate the fault detection and correction mechanism.
+
+The following input combinations were applied:
+
+1. 10 × 5
+2. −12 × 6
+3. 25 × −4
+4. −15 × −3
+5. 32767 × 2
+6. −32768 × 1
+
+![RTL Simulation Waveform](images/rtl_simulation_results.png)
+
+---
+
+## 2. Synthesis Results
+
+The verified RTL design was synthesized using Cadence Genus. The synthesis process successfully mapped the design to the target standard-cell library and generated the gate-level netlist.
+
+The synthesis summary reported:
+
+- 808 standard cells
+- 1372 nets
+- 97 ports
+
+![Synthesis Results](images/synthesis_results.png)
+
+![Synthesized Gate-Level Implementation](images/synthesized_gate_level.png)
+
+---
+
+## 3. Physical Design Results
+
+The synthesized netlist was imported into Cadence Innovus for floorplanning, placement, and routing.
+
+The complete physical design flow was executed successfully, resulting in the final routed layout.
+
+![Physical Design Results](images/physical_design_results.png)
+
+---
+
+# CONCLUSION
+
+In this project, a Fault-Tolerant Hybrid Booth–Wallace Tree Multiplier with Concurrent Error Detection and Correction was successfully designed and implemented using Verilog HDL.
+
+The proposed architecture combines Radix-4 Booth encoding and Wallace tree reduction to achieve high-speed signed multiplication while reducing propagation delay and hardware complexity.
+
+The complete design was verified through RTL simulation using Cadence Xcelium and SimVision, synthesized using Cadence Genus, and physically implemented in Cadence Innovus through floorplanning, placement, and routing.
+
+Physical design results showed successful routing with zero DRC violations, no congestion overflow, and approximately 49.9% placement density. During timing analysis, WNS and TNS were reported as 0 ns.
+
+Overall, the proposed architecture achieves an effective balance between performance, area efficiency, and reliability, making it suitable for DSP processors, AI accelerators, cryptographic systems, embedded hardware, and other safety-critical VLSI applications.
+
+---
+
+# REFERENCES
+
+1. A. D. Booth, “A Signed Binary Multiplication Technique,” Quarterly Journal of Mechanics and Applied Mathematics, vol. 4, no. 2, pp. 236–240, 1951.
+
+2. C. S. Wallace, “A Suggestion for a Fast Multiplier,” IEEE Transactions on Electronic Computers, vol. EC-13, no. 1, pp. 14–17, 1964.
+
+3. L. Dadda, “Some Schemes for Parallel Multipliers,” Alta Frequenza, vol. 34, pp. 349–356, 1965.
+
+4. V. Dharani et al., “Booth Multiplier: A Systematic Study,” in Lecture Notes in Electrical Engineering, 2021.
+
+5. “Power and Area-Efficient Multiplier Architectures: A Comparative Study of Array, Dadda, Booth, Wallace Tree, and Vedic Multipliers,” IEEE Conference Publication, 2024.
+
+6. D. Umesh and S. G. Nayak, “High-Speed Signed 8-bit Multiplier Using Booth Encoding and Dadda Tree Architecture,” Proceedings of IEEE CONIT, 2025.
+
+7. A. Biswas and J. Jin, “Implementation of an 8-bit Wallace Tree Multiplier,” 2025.
+
+8. Priyanka C, Chiranth C. Shet, Darshan M. R., et al., “A Reconfigurable Precision Hybrid Booth-Encoded Wallace–Dadda Multiplier for Energy-Efficient DSP and AI Hardware,” International Journal of Engineering Research & Technology (IJERT), vol. 15, no. 4, pp. 1–4, 2026.
