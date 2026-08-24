@@ -2,17 +2,9 @@
 
 ## ABSTRACT
 
-Multiplication is one of the most important arithmetic operations in digital systems and is widely used in applications such as digital signal processing, image processing, machine learning, and microprocessor design. The overall performance of these systems largely depends on the speed, area, and reliability of the multiplier unit.
+Multiplication is a fundamental operation in digital systems, widely used in DSP, image processing, machine learning, and microprocessors. This project proposes a high-speed, fault-tolerant multiplier using a hybrid Radix-4 Booth encoder and Wallace tree architecture. Booth encoding reduces the number of partial products, while the Wallace tree enables fast parallel reduction using carry-save adders, improving speed and reducing delay.
 
-Conventional multiplier architectures, such as array multipliers, generate and add partial products sequentially, resulting in higher propagation delay and increased hardware complexity. To overcome these limitations, this project presents a high-speed and fault-tolerant multiplier based on a hybrid architecture that combines Radix-4 Booth encoding and Wallace tree reduction.
-
-Radix-4 Booth encoding reduces the number of partial products by recoding the multiplier bits, while the Wallace tree structure compresses these partial products in parallel using carry-save adders. This combination significantly reduces the critical path delay and improves multiplication speed.
-
-To improve reliability, the design incorporates a concurrent error detection and correction mechanism. Redundant logic is used to detect faults that may occur during computation, and correction circuitry automatically restores the correct output when an error is detected.
-
-The complete architecture is implemented in Verilog HDL and verified through simulation and fault-injection testing. The results show that the proposed design achieves faster operation and higher reliability compared to conventional multiplier architectures, making it suitable for high-performance and fault-tolerant digital systems.
-
-Simulation results demonstrate that the proposed hybrid Booth–Wallace tree multiplier achieves substantially higher speed and reduced computational complexity while maintaining robust fault resilience. The design offers an effective balance between performance and reliability, making it a strong candidate for high-performance and fault-tolerant VLSI systems.
+To enhance reliability, concurrent error detection and correction is incorporated using redundant logic. The design is implemented in Verilog HDL and verified through simulation and fault-injection testing. Results demonstrate improved speed, reduced complexity, and enhanced fault tolerance compared to conventional multiplier architectures.
 
 ---
 
